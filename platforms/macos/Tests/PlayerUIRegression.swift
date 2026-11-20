@@ -3482,7 +3482,7 @@ private final class Checks: NSObject, NSApplicationDelegate {
     func rapidSpatialRelativeChecks(_ item: MediaItem) async throws {
         guard #available(macOS 14.2, *) else { return }
         enum Outcome: CaseIterable {
-            case previous, next, explicitPrevious, noACK, rejected, wrongRequest, wrongTarget, oldEpoch, originalTarget, noQueue, noAccount, pausedIntent, contextMismatch, expired
+            case previous, next, explicitPrevious, noACK, rejected, wrongRequest, wrongTarget, oldEpoch, originalTarget, noQueue, noAccount, pausedIntent, contextMismatch, justBeforeExpiry, expired
             case advancedPrevious, advancedNext, advancedLoading, staleObservedEpoch, legacyAdvanced
             case partialObserved, partialNoObserved, partialWrongEpoch, partialRequiredOnly
         }
@@ -3499,6 +3499,15 @@ private final class Checks: NSObject, NSApplicationDelegate {
         let observed = try decoder.decode(RemoteOutputCommand.self, from: JSONSerialization.data(withJSONObject: wire))
         try check(observed.observedQueueEpoch == 12 && observed.requiredQueueEpoch == nil, "Observed dispatch epoch decodes without adding native permission")
         for outcome in Outcome.allCases {
+            // Drive the original chain and the separately restarted cooldown across
+            // their boundaries without depending on MainActor scheduling latency.
+            let timed = outcome == .justBeforeExpiry || outcome == .expired
+            let start = ContinuousClock.now
+            var elapsedMs = 0
+            let timing = timed ? SpatialIntentTimeSource(
+                continuousNow: { start + .milliseconds(elapsedMs) },
+                uptimeNow: { 10 + Double(elapsedMs) / 1000 }
+            ) : nil
             let suiteName = "app.auvra.rapid-relative." + UUID().uuidString
             let preferences = UserDefaults(suiteName: suiteName)!
             defer { preferences.removePersistentDomain(forName: suiteName) }
@@ -3509,7 +3518,7 @@ private final class Checks: NSObject, NSApplicationDelegate {
             let model = PlayerStore(loadLibrary: false, loadSession: false, connectionFactory: { receive, _ in
                 let connection = FixtureConnection(receive, items: [item, middle, outgoing, other], details: outcome == .noAccount ? .manual : .automatic)
                 fixture = connection; return connection
-            }, playbackRuntime: runtime, volumeDefaults: preferences)
+            }, playbackRuntime: runtime, volumeDefaults: preferences, spatialIntentTime: timing)
             let driver = fixture!
             func owned(_ track: MediaItem, position: UInt64 = 20, spatialStatus: String = "active") {
                 var state = frame(track, context: context, position: position, ownedOutputObserved: true, previous: true, positionRate: 1)
@@ -3531,14 +3540,17 @@ private final class Checks: NSObject, NSApplicationDelegate {
             let baseline = leases().count
             try check(baseline > 0, "Rapid relative fixture starts with an actual owned spatial lease")
             model.next()
-            if outcome == .expired {
-                try await Task.sleep(for: .milliseconds(1040))
+            if timed {
+                elapsedMs = 1040
                 await process.clock(item.id, sequence: 2, rate: 1, position: 2_100, queueEpoch: 10, context: context, complete: true)
                 try await wait { runtime.clock?.sequence == 2 }; owned(item, position: 2_100)
             }
             let rapidStarted = ContinuousClock.now
+            func insideLatestCooldown() -> Bool {
+                timed ? elapsedMs < 1390 : ContinuousClock.now - rapidStarted < .milliseconds(350)
+            }
             model.next()
-            let forward = outcome == .next || outcome == .expired || outcome == .advancedNext
+            let forward = outcome == .next || timed || outcome == .advancedNext
             if !forward { model.previous() }
             let kind: RemoteOutputCommand.Control.Kind = forward ? .next
                 : outcome == .explicitPrevious || outcome == .partialRequiredOnly ? .previousFromStart : .previous
@@ -3591,7 +3603,7 @@ private final class Checks: NSObject, NSApplicationDelegate {
                     try await Task.sleep(for: .milliseconds(2))
                 }
             }
-            if outcome == .expired { try await Task.sleep(for: .milliseconds(230)) }
+            if timed { elapsedMs = outcome == .justBeforeExpiry ? 1249 : 1250 }
             if outcome == .pausedIntent { model.send(.pause) }
             let target = outcome == .wrongTarget ? other : expected
             let partialSequence: UInt64 = advanced ? 6 : 4
@@ -3607,19 +3619,28 @@ private final class Checks: NSObject, NSApplicationDelegate {
                                 context: outcome == .contextMismatch ? "spotify:album:" + String(repeating: "r", count: 22) : context,
                                 complete: true)
             try await wait { runtime.clock?.sequence == finalSequence }; owned(target, position: 30)
-            let positive = [.previous, .next, .explicitPrevious, .advancedPrevious, .advancedNext, .advancedLoading, .partialObserved].contains(outcome)
+            let positive = [.previous, .next, .explicitPrevious, .justBeforeExpiry, .advancedPrevious, .advancedNext, .advancedLoading, .partialObserved].contains(outcome)
             try check((leases().count > baseline) == positive,
                       "Rapid relative early lease requires latest ACK, exact target and new occurrence: \(outcome)")
+            if outcome == .expired {
+                elapsedMs = 1389
+                owned(target, position: 30)
+                try check(leases().count == baseline, "Expired rapid proof remains fenced until the ordinary capture cooldown ends")
+                elapsedMs = 1391
+                owned(target, position: 30)
+                try check(leases().count > baseline && leases().last?.mediaId == middle.id,
+                          "The ordinary capture path recovers the same target after the 350 ms cooldown")
+            }
             if positive {
                 try check(leases().last?.mediaId == middle.id, "Rapid relative early lease belongs only to the final native target")
-                try check(ContinuousClock.now - rapidStarted < .milliseconds(350), "Verified rapid relative playback bypasses the original blanket delay")
+                try check(insideLatestCooldown(), "Verified rapid relative playback bypasses the original blanket delay")
                 let stable = latestLeaseUpdate()
                 try check(stable?.generation == leases().last?.generation && stable?.mediaId == middle.id,
                           "An early confirmed relative lease remains live after its proof is consumed")
                 let beforeEcho = driver.recorded().count
                 owned(target, position: 30, spatialStatus: "starting")
                 let echoUpdates = driver.recorded().dropFirst(beforeEcho)
-                try check(ContinuousClock.now - rapidStarted < .milliseconds(350)
+                try check(insideLatestCooldown()
                           && latestLeaseUpdate()?.generation == stable?.generation
                           && !echoUpdates.contains { if case .hostAnalysis(nil) = $0 { return true }; return false }
                           && !echoUpdates.contains { if case .hostAnalysis(.some(let lease)) = $0 { return lease.generation != stable?.generation }; return false },

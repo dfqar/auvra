@@ -2,6 +2,13 @@ import Foundation
 import Observation
 import OSLog
 
+/// The relative-command proof uses continuous time. The ordinary capture cooldown
+/// uses awake uptime, independently of the SDK clocks used to verify playback.
+struct SpatialIntentTimeSource {
+    let continuousNow: () -> ContinuousClock.Instant
+    let uptimeNow: () -> TimeInterval
+}
+
 /// Presentation equality never replaces the raw coordinator/provider state.
 /// Revisions, receipt IDs, statistics and clock heartbeats still reach transport;
 /// only changes a view can present invalidate its Observation dependencies.
@@ -455,6 +462,7 @@ final class PlayerStore {
     @ObservationIgnored private var hostAnalysisSubmittedSequence: UInt64 = 0
     @ObservationIgnored private var hostAnalysisFence: UInt64 = 0
     @ObservationIgnored private var hostAnalysisFenceRuntime: UInt64 = 0
+    @ObservationIgnored private let spatialIntentTime: SpatialIntentTimeSource?
     @ObservationIgnored private var hostAnalysisNotBefore: Double = 0
     @ObservationIgnored private var hostRelayPause: (request: UInt64, deadline: Double)?
     @ObservationIgnored private var spatialNextOrigin: (mediaId: String, deadline: Double)?
@@ -484,7 +492,9 @@ final class PlayerStore {
          connectionFactory: PlayerConnectionFactory? = nil, playbackRuntime: SoloistRuntime? = nil,
          remoteConfirmationTimeout: Duration = .seconds(15), remotePauseConfirmationGrace: Duration = .seconds(5), lyricsProvider: (any LyricsProviding)? = nil,
          spotifyPreferences: SpotifyPreferences? = nil, spotifyClientID: String? = nil,
-         spotifyAuthorizationFactory: SpotifyAuthorizationFactory? = nil, volumeDefaults: UserDefaults = .standard) {
+         spotifyAuthorizationFactory: SpotifyAuthorizationFactory? = nil, volumeDefaults: UserDefaults = .standard,
+         spatialIntentTime: SpatialIntentTimeSource? = nil) {
+        self.spatialIntentTime = spatialIntentTime
         self.spotifyPreferences = spotifyPreferences ?? SpotifyPreferences()
         self.volumeDefaults = volumeDefaults
         let spatialEnabled = volumeDefaults.bool(forKey: Self.spotifySpatialStereoPreference)
@@ -2143,7 +2153,7 @@ extension PlayerStore {
         if intent {
             spatialRelativeConfirmation = nil
             fenceHostAnalysisClock()
-            hostAnalysisNotBefore = ProcessInfo.processInfo.systemUptime + 0.35
+            hostAnalysisNotBefore = (spatialIntentTime?.uptimeNow() ?? ProcessInfo.processInfo.systemUptime) + 0.35
         }
         guard hostAnalysisLease != nil else { return }
         dropHostAnalysisLease()
@@ -2225,9 +2235,9 @@ extension PlayerStore {
               SpotifyPlaybackIdentity.matches(clock.mediaId, snapshot.queue.current?.id) else { return nil }
         return device
     }
-    private func confirmedSpatialSeek(at now: Double) -> (request: UInt64, sequence: UInt64)? {
+    private func confirmedSpatialSeek(at now: Double, duringCooldown: Bool) -> (request: UInt64, sequence: UInt64)? {
         guard let proof = spatialSeekConfirmation else { return nil }
-        guard now < hostAnalysisNotBefore, proof.processID == spotifyPlayback.status.processID,
+        guard duringCooldown, proof.processID == spotifyPlayback.status.processID,
               let clock = matchingOwnedSeekClock(proof.seek),
               (clock.metadata?.contextUri ?? spotifyState?.playback?.contextUri) == proof.contextURI else {
             spatialSeekConfirmation = nil
@@ -2282,7 +2292,7 @@ extension PlayerStore {
         let queueMatches = clock.map { spotifyPlayback.queue?.matches($0) == true } == true
         let queueFresh = spotifyPlayback.queue.map { $0.isFresh(at: now) && now - $0.uptime <= 0.8 } == true
         let remaining: Int64 = proof.map { proof -> Int64 in
-            let duration = ContinuousClock.now.duration(to: proof.deadline).components
+            let duration = relativeProofNow.duration(to: proof.deadline).components
             return max(0, duration.seconds * 1000 + duration.attoseconds / 1_000_000_000_000_000)
         } ?? 0
         let contextMatches = proof.map { clock?.metadata?.contextUri == $0.contextURI } == true
@@ -2320,8 +2330,9 @@ extension PlayerStore {
         spatialRelativeConfirmation?.diagnosticMask = mask
         traceSpatialRelative("waiting", reason: "confirmation_gate", proof: proof, mask: mask)
     }
+    private var relativeProofNow: ContinuousClock.Instant { spatialIntentTime?.continuousNow() ?? .now }
     private func spatialRelativeScope(_ proof: SpatialRelativeConfirmation, at now: Double) -> Bool {
-        guard ContinuousClock.now < proof.deadline, proof.bridge == bridgeEpoch,
+        guard relativeProofNow < proof.deadline, proof.bridge == bridgeEpoch,
               proof.runtime == spotifyPlayback.clockGeneration, proof.credentials == spotifyCredentialEpoch,
               proof.account == spotifyAccountIdentity?.key, proof.processID == spotifyPlayback.status.processID,
               !isClosing, !bridgeFailed, !isRestarting, !spotifyReadRevoked, spotifySpatialStereo,
@@ -2383,7 +2394,7 @@ extension PlayerStore {
         return SpatialRelativeConfirmation(bridge: bridgeEpoch, runtime: spotifyPlayback.clockGeneration,
             credentials: spotifyCredentialEpoch, account: account, processID: lease.processId,
             deviceID: lease.deviceId, originID: lease.mediaId, contextURI: context,
-            originSequence: clock.sequence, originEpoch: epoch, deadline: .now + .milliseconds(1250))
+            originSequence: clock.sequence, originEpoch: epoch, deadline: relativeProofNow + .milliseconds(1250))
     }
     private func observeSpatialRelativeDispatch(_ command: RemoteOutputCommand) {
         guard var proof = spatialRelativeConfirmation, command.requestId == proof.request else {
@@ -2438,7 +2449,7 @@ extension PlayerStore {
     private func confirmedSpatialRelative(at now: Double) -> Bool {
         guard let proof = spatialRelativeConfirmation else { return false }
         guard latestPositionRequest == proof.request, spatialRelativeScope(proof, at: now) else {
-            traceSpatialRelative(ContinuousClock.now >= proof.deadline ? "expired" : "scope_cancelled", reason: "scope_gate", proof: proof)
+            traceSpatialRelative(relativeProofNow >= proof.deadline ? "expired" : "scope_cancelled", reason: "scope_gate", proof: proof)
             spatialRelativeConfirmation = nil; return false
         }
         guard proof.continued, proof.accepted, let dispatch = proof.dispatch,
@@ -2475,10 +2486,10 @@ extension PlayerStore {
             Self.playbackTiming.info("spatial_previous_dispatch id=\(command.id, privacy: .public) bound=true")
         }
     }
-    private func confirmedSpatialPrevious(at now: Double) -> (request: UInt64, sequence: UInt64)? {
+    private func confirmedSpatialPrevious(at now: Double, duringCooldown: Bool) -> (request: UInt64, sequence: UInt64)? {
         guard let proof = spatialPreviousConfirmation else { return nil }
         let differentDevice = spotifyState?.playback?.device.map { $0.isActive && $0.id != proof.deviceID } ?? false
-        guard now < hostAnalysisNotBefore, proof.bridge == bridgeEpoch, !isClosing, !bridgeFailed, !spotifyReadRevoked,
+        guard duringCooldown, proof.bridge == bridgeEpoch, !isClosing, !bridgeFailed, !spotifyReadRevoked,
               spotifyPlayback.clockGeneration == proof.runtime, spotifyPlayback.status.processID == proof.processID,
               spotifyPlayback.status.authenticated == true, spotifyState?.authenticationRequired == false,
               snapshot?.activeProvider == "spotify", !differentDevice,
@@ -2532,8 +2543,9 @@ extension PlayerStore {
     }
     private func forwardHostAnalysis() {
         let now = ProcessInfo.processInfo.systemUptime
-        let confirmedSeek = confirmedSpatialSeek(at: now)
-        let confirmedPrevious = confirmedSpatialPrevious(at: now)
+        let duringCooldown = (spatialIntentTime?.uptimeNow() ?? now) < hostAnalysisNotBefore
+        let confirmedSeek = confirmedSpatialSeek(at: now, duringCooldown: duringCooldown)
+        let confirmedPrevious = confirmedSpatialPrevious(at: now, duringCooldown: duringCooldown)
         let confirmedRelative = confirmedSpatialRelative(at: now)
         let runtime = spotifyPlayback.clockGeneration
         let visuals = analysisVisible && reactiveLighting
@@ -2542,7 +2554,7 @@ extension PlayerStore {
         guard visuals || spatial, !isClosing, !bridgeFailed, !isRestarting,
               let snapshot, let pid = spotifyPlayback.status.processID,
               let media = current?.id, let clock = spotifyPlayback.clock,
-              now >= hostAnalysisNotBefore || ((confirmedSeek != nil || confirmedPrevious != nil || confirmedRelative) && spatial),
+              !duringCooldown || ((confirmedSeek != nil || confirmedPrevious != nil || confirmedRelative) && spatial),
               runtime != hostAnalysisFenceRuntime || clock.sequence > hostAnalysisFence else {
             clearHostAnalysis(intent: false); return
         }
