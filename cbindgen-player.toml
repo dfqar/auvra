@@ -1,0 +1,8 @@
+language = "C"
+include_guard = "AUVRA_PLAYER_H"
+pragma_once = true
+usize_is_size_t = true
+documentation = true
+header = "/* Generated from player-ffi. Do not edit by hand. */"
+[enum]
+prefix_with_name = true

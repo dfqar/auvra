@@ -1,0 +1,13 @@
+[package]
+name = "player-session"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+player-domain = { path = "../player-domain" }
+player-queue = { path = "../player-queue" }
+rusqlite = { version = "=0.40.2", features = ["bundled"] }
+serde_json.workspace = true
+serde.workspace = true

@@ -1,0 +1,6 @@
+[alias]
+xtask = "run --package xtask --"
+
+[env]
+# Match the native host target, including C objects compiled by Cargo build scripts.
+MACOSX_DEPLOYMENT_TARGET = { value = "14.0", force = false }

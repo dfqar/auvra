@@ -1,0 +1,439 @@
+{
+  "target": "aarch64-apple-darwin",
+  "license_expressions": [
+    "Apache-2.0",
+    "Apache-2.0 AND ISC",
+    "Apache-2.0 OR BSL-1.0",
+    "Apache-2.0 OR ISC OR MIT",
+    "Apache-2.0 OR MIT",
+    "Apache-2.0/MIT",
+    "BSD-2-Clause OR MIT OR Apache-2.0",
+    "BSD-3-Clause",
+    "CC0-1.0",
+    "CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception",
+    "CC0-1.0 OR MIT-0 OR Apache-2.0",
+    "CDLA-Permissive-2.0",
+    "ISC",
+    "MIT",
+    "MIT OR Apache-2.0",
+    "MIT OR Apache-2.0 OR Zlib",
+    "MIT/Apache-2.0",
+    "MPL-2.0",
+    "Unicode-3.0",
+    "Unlicense OR MIT",
+    "Zlib",
+    "Zlib OR Apache-2.0 OR MIT"
+  ],
+  "supplements": {
+    "block@0.1.6": {
+      "license": "MIT",
+      "declaration": "https://docs.rs/crate/block/0.1.6/source/Cargo.toml",
+      "files": [
+        {
+          "file": "objc-MIT-e353f37b12ae.txt",
+          "sha256": "e353f37b12aefbb9f9b29490e837cfee05d9bda70804b3562839a3285c1df1e5",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/757cd841d0293341dbefd9b99d7548dec244ffde/LICENSE.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "block2@0.6.2": {
+      "license": "MIT",
+      "declaration": "https://docs.rs/crate/block2/0.6.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/b4167b582b2f75f9a1be75495c41b765344fd03c/LICENSE.md"
+        },
+        {
+          "file": "objc-MIT-e353f37b12ae.txt",
+          "sha256": "e353f37b12aefbb9f9b29490e837cfee05d9bda70804b3562839a3285c1df1e5",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/757cd841d0293341dbefd9b99d7548dec244ffde/LICENSE.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "codespan-reporting@0.11.1": {
+      "license": "Apache-2.0",
+      "declaration": "https://docs.rs/crate/codespan-reporting/0.11.1/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-c71d239df917.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "source": "https://raw.githubusercontent.com/brendanzab/codespan/fd389a13f5bb6d625b71e2e4694b26e127f393f9/LICENSE"
+        }
+      ]
+    },
+    "dasp_sample@0.11.0": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/dasp_sample/0.11.0/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-APACHE-756c8d2ab2dc.txt",
+          "sha256": "756c8d2ab2dc24f256e1455b5f03937f4933d83d7bc9f2d55009fc962377d512",
+          "source": "https://raw.githubusercontent.com/rustaudio/sample/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-APACHE"
+        },
+        {
+          "file": "LICENSE-MIT-b1d6df41ed3a.txt",
+          "sha256": "b1d6df41ed3aa96806e74c729444d7c121d90e6660a6aed01d298e03fde475a0",
+          "source": "https://raw.githubusercontent.com/rustaudio/sample/97c3bb9b2363c0b46ac1633858bf1054fd02a980/LICENSE-MIT"
+        }
+      ]
+    },
+    "dispatch2@0.3.1": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/dispatch2/0.3.1/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/8852b424193ca41602281b3d7540d7c8ed51e49a/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "gpu-alloc@0.6.2": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/gpu-alloc/0.6.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "COPYING-12121dfa5886.txt",
+          "sha256": "12121dfa588677007848ab922a45a1e3248868f6ff063598fceb3141d7897314",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/61020bdcb4eb04fca6bbf748aeb9570e859236e0/COPYING"
+        },
+        {
+          "file": "gpu-APACHE-58317934bf81.txt",
+          "sha256": "58317934bf818c379e4215fad7e8dfb6812edff32c9557b8b039343f69711e08",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/61020bdcb4eb04fca6bbf748aeb9570e859236e0/license/APACHE"
+        },
+        {
+          "file": "gpu-MIT-f774bf681517.txt",
+          "sha256": "f774bf68151714985324d90adbd59e8f271b7ba518608d871b6ba16464692879",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/61020bdcb4eb04fca6bbf748aeb9570e859236e0/license/MIT"
+        }
+      ]
+    },
+    "gpu-alloc-types@0.3.1": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/gpu-alloc-types/0.3.1/source/Cargo.toml",
+      "files": [
+        {
+          "file": "COPYING-12121dfa5886.txt",
+          "sha256": "12121dfa588677007848ab922a45a1e3248868f6ff063598fceb3141d7897314",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/7ddd1fe576fcfc503347eb97e476a47581479f22/COPYING"
+        },
+        {
+          "file": "gpu-APACHE-58317934bf81.txt",
+          "sha256": "58317934bf818c379e4215fad7e8dfb6812edff32c9557b8b039343f69711e08",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/7ddd1fe576fcfc503347eb97e476a47581479f22/license/APACHE"
+        },
+        {
+          "file": "gpu-MIT-f774bf681517.txt",
+          "sha256": "f774bf68151714985324d90adbd59e8f271b7ba518608d871b6ba16464692879",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-alloc/7ddd1fe576fcfc503347eb97e476a47581479f22/license/MIT"
+        }
+      ]
+    },
+    "gpu-descriptor@0.3.2": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/gpu-descriptor/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "COPYING-f72143f7e9d9.txt",
+          "sha256": "f72143f7e9d9fb8bd336b139fa22f825a299591c29f2f7338c5566347b137613",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/bb28b4e55b742e0ea3e7a0968e7ee6287ba0e06a/COPYING"
+        },
+        {
+          "file": "gpu-APACHE-6bec8c944a6d.txt",
+          "sha256": "6bec8c944a6d4251be50ac86bb4ca360bcce5aea472505dee2800e160bf1cdbf",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/bb28b4e55b742e0ea3e7a0968e7ee6287ba0e06a/license/APACHE"
+        },
+        {
+          "file": "gpu-MIT-5226e27d5fbc.txt",
+          "sha256": "5226e27d5fbc683db56c52853cdb9d15b69abadb525a60f95c862c2dbd77cdc8",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/bb28b4e55b742e0ea3e7a0968e7ee6287ba0e06a/license/MIT"
+        }
+      ]
+    },
+    "gpu-descriptor-types@0.2.0": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/gpu-descriptor-types/0.2.0/source/Cargo.toml",
+      "files": [
+        {
+          "file": "COPYING-f72143f7e9d9.txt",
+          "sha256": "f72143f7e9d9fb8bd336b139fa22f825a299591c29f2f7338c5566347b137613",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/9f2fb9546591322e7b77ee1e79385e01effd85e4/COPYING"
+        },
+        {
+          "file": "gpu-APACHE-6bec8c944a6d.txt",
+          "sha256": "6bec8c944a6d4251be50ac86bb4ca360bcce5aea472505dee2800e160bf1cdbf",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/9f2fb9546591322e7b77ee1e79385e01effd85e4/license/APACHE"
+        },
+        {
+          "file": "gpu-MIT-5226e27d5fbc.txt",
+          "sha256": "5226e27d5fbc683db56c52853cdb9d15b69abadb525a60f95c862c2dbd77cdc8",
+          "source": "https://raw.githubusercontent.com/zakarumych/gpu-descriptor/9f2fb9546591322e7b77ee1e79385e01effd85e4/license/MIT"
+        }
+      ]
+    },
+    "hexf-parse@0.2.1": {
+      "license": "CC0-1.0",
+      "declaration": "https://docs.rs/crate/hexf-parse/0.2.1/source/Cargo.toml",
+      "files": [
+        {
+          "file": "CC0-1-0-a2010f343487.txt",
+          "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+          "source": "https://raw.githubusercontent.com/spdx/license-list-data/v3.27.0/text/CC0-1.0.txt"
+        }
+      ]
+    },
+    "malloc_buf@0.0.6": {
+      "license": "MIT",
+      "declaration": "https://docs.rs/crate/malloc_buf/0.0.6/source/Cargo.toml",
+      "files": [
+        {
+          "file": "objc-MIT-e353f37b12ae.txt",
+          "sha256": "e353f37b12aefbb9f9b29490e837cfee05d9bda70804b3562839a3285c1df1e5",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/757cd841d0293341dbefd9b99d7548dec244ffde/LICENSE.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "naga@0.20.0": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/naga/0.20.0/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-APACHE-a6cba85bc92e.txt",
+          "sha256": "a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+          "source": "https://raw.githubusercontent.com/gfx-rs/wgpu/4521502da69bcf4f92c8350042c268573ef216d4/LICENSE.APACHE"
+        },
+        {
+          "file": "LICENSE-MIT-c7fea58d1cfe.txt",
+          "sha256": "c7fea58d1cfe49634cd92e54fc10a9d871f4b275321a4cd8c09e449122caaeb4",
+          "source": "https://raw.githubusercontent.com/gfx-rs/wgpu/4521502da69bcf4f92c8350042c268573ef216d4/LICENSE.MIT"
+        }
+      ]
+    },
+    "objc2@0.6.5": {
+      "license": "MIT",
+      "declaration": "https://docs.rs/crate/objc2/0.6.5/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/d7d2fa23ceaa5e6096c923b081040e5d81b3b9df/LICENSE.md"
+        },
+        {
+          "file": "objc-MIT-e353f37b12ae.txt",
+          "sha256": "e353f37b12aefbb9f9b29490e837cfee05d9bda70804b3562839a3285c1df1e5",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/757cd841d0293341dbefd9b99d7548dec244ffde/LICENSE.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "objc2-audio-toolbox@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-audio-toolbox/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "objc2-av-foundation@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-av-foundation/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "This framework crate declares Apache-2.0 as one option. The upstream licensing discussion and Apache-2.0 text are included."
+    },
+    "objc2-core-audio@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-audio/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "objc2-core-audio-types@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-audio-types/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "objc2-core-foundation@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-foundation/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "objc2-core-graphics@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-graphics/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "This framework crate declares Apache-2.0 as one option. The upstream licensing discussion and Apache-2.0 text are included."
+    },
+    "objc2-core-media@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-media/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "This framework crate declares Apache-2.0 as one option. The upstream licensing discussion and Apache-2.0 text are included."
+    },
+    "objc2-core-video@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-core-video/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "This framework crate declares Apache-2.0 as one option. The upstream licensing discussion and Apache-2.0 text are included."
+    },
+    "objc2-io-surface@0.3.2": {
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "declaration": "https://docs.rs/crate/objc2-io-surface/0.3.2/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/7b1abfd750a2cacaea71d6a56ecfb83cb7de560b/LICENSE.md"
+        },
+        {
+          "file": "Apache-2-0-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "note": "This framework crate declares Apache-2.0 as one option. The upstream licensing discussion and Apache-2.0 text are included."
+    },
+    "objc2-encode@4.1.0": {
+      "license": "MIT",
+      "declaration": "https://docs.rs/crate/objc2-encode/4.1.0/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-md-7f976f7e9cb2.txt",
+          "sha256": "7f976f7e9cb2d87df7230606feb932c3f21ac0e664045a775b600046ff850c54",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/8d214f5477365ffcbcbb7de058c86ed9a518efb7/LICENSE.md"
+        },
+        {
+          "file": "objc-MIT-e353f37b12ae.txt",
+          "sha256": "e353f37b12aefbb9f9b29490e837cfee05d9bda70804b3562839a3285c1df1e5",
+          "source": "https://raw.githubusercontent.com/madsmtm/objc2/757cd841d0293341dbefd9b99d7548dec244ffde/LICENSE.txt"
+        }
+      ],
+      "note": "The current declaration and upstream licensing discussion are preserved together with the applicable license text. The Steven Sheldon MIT notice comes from the licensing history before LICENSE.txt was replaced by LICENSE.md."
+    },
+    "profiling@1.0.18": {
+      "license": "MIT OR Apache-2.0",
+      "declaration": "https://docs.rs/crate/profiling/1.0.18/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-APACHE-10d30a673cd5.txt",
+          "sha256": "10d30a673cd5e9349bdc02aeb48f14b3386d27d0da32df8f0a555d4aa16aa551",
+          "source": "https://raw.githubusercontent.com/aclysma/profiling/8271551172eb6fa4cba47369aedd93790c623df9/LICENSE-APACHE"
+        },
+        {
+          "file": "LICENSE-MIT-c8167fdeeed4.txt",
+          "sha256": "c8167fdeeed46d3f244d3f85c5bf998ce889343691c32be2c61a8bc4b5c08333",
+          "source": "https://raw.githubusercontent.com/aclysma/profiling/8271551172eb6fa4cba47369aedd93790c623df9/LICENSE-MIT"
+        }
+      ]
+    },
+    "spirv@0.3.0+sdk-1.3.268.0": {
+      "license": "Apache-2.0",
+      "declaration": "https://docs.rs/crate/spirv/0.3.0%2Bsdk-1.3.268.0/source/Cargo.toml",
+      "files": [
+        {
+          "file": "LICENSE-cfc7749b96f6.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "source": "https://raw.githubusercontent.com/gfx-rs/rspirv/e91a5debc10c395b36db7721dfff6326d697a1e2/LICENSE"
+        }
+      ]
+    }
+  }
+}

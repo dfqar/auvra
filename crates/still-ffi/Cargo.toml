@@ -1,0 +1,15 @@
+[package]
+name = "still-ffi"
+version = "2.2.0"
+edition.workspace = true
+license = "MIT"
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+pollster.workspace = true
+serde_json.workspace = true
+still-core = { path = "../still-core" }
+still-renderer = { path = "../still-renderer" }
+still-scenes = { path = "../still-scenes" }

@@ -1,0 +1,19 @@
+[package]
+name = "player-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+
+[dependencies]
+player-domain = { path = "../player-domain" }
+player-visuals = { path = "../player-visuals" }
+player-queue = { path = "../player-queue" }
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]
+player-session = { path = "../player-session" }
+provider-mock = { path = "../provider-mock" }
+provider-local = { path = "../provider-local" }

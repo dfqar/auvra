@@ -1,0 +1,12 @@
+[package]
+name = "provider-spotify"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+
+[dependencies]
+player-domain = { path = "../player-domain" }
+serde_json.workspace = true
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }

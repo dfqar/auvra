@@ -1,0 +1,14 @@
+[package]
+name = "provider-local"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+
+[dependencies]
+player-domain = { path = "../player-domain" }
+audio-engine = { path = "../audio-engine" }
+player-library = { path = "../player-library" }
+
+blake3 = "1.8"

@@ -1,0 +1,11 @@
+[package]
+name = "player-visuals"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+
+[dependencies]
+player-domain = { path = "../player-domain" }
+serde.workspace = true

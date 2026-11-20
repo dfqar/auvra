@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "license": "MPL-2.0",
+  "firefox_revision": "48d55cf7ec80093903e2ef7f58b61a84a22ef716",
+  "engine_source_revision": "eea6e5a80aa4ddd86d9cc35ce9a65b79aa3ab96d",
+  "engine_version": "4.0",
+  "model_version": "3.1",
+  "model_architecture": "base-memory",
+  "notices": {
+    "MPL-2.0.txt": {
+      "size": 16725,
+      "sha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "url": "https://raw.githubusercontent.com/mozilla-firefox/firefox/48d55cf7ec80093903e2ef7f58b61a84a22ef716/toolkit/components/translations/bergamot-translator/LICENSE"
+    },
+    "Marian-MIT.txt": {
+      "size": 1138,
+      "sha256": "fb3e48be2f3c9c85f3acf32d4ff115a803208e51ecab694000415c8bf1dd712b",
+      "url": "https://raw.githubusercontent.com/mozilla/translations/eea6e5a80aa4ddd86d9cc35ce9a65b79aa3ab96d/inference/marian-fork/LICENSE.md"
+    },
+    "Intgemm-MIT.txt": {
+      "size": 4015,
+      "sha256": "887bd367b44f548d743864cb4322d0895a36b1794c6ad5b5e3a0fac53ccd117b",
+      "url": "https://raw.githubusercontent.com/kpu/intgemm/f7401513da71758dacce52fed1c7855549abee59/LICENSE"
+    },
+    "SentencePiece-Apache-2.0.txt": {
+      "size": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "url": "https://raw.githubusercontent.com/browsermt/sentencepiece/ae41b7740d7006596bb9257e83340b2620db9d00/LICENSE"
+    },
+    "Ssplit-LICENSE.txt": {
+      "size": 1232,
+      "sha256": "4ced746a9cab1b6b6762bd6c1999c6d65e2d45de0bab19a3902514147bbff16a",
+      "url": "https://raw.githubusercontent.com/browsermt/ssplit-cpp/a311f9865ade34db1e8e080e6cc146f55dafb067/LICENSE.md"
+    },
+    "Emscripten-LICENSE.txt": {
+      "size": 5093,
+      "sha256": "620a78084fc7ca97c0b5dea9abf891f3ffcadfdbf305276f099c9c4e12fc1d86",
+      "url": "https://raw.githubusercontent.com/emscripten-core/emscripten/3.1.8/LICENSE"
+    }
+  },
+  "files": {
+    "bergamot.js": {
+      "input": "firefox-engine.js",
+      "size": 100187,
+      "sha256": "faff1ef6285b0d26f01787776fd49299dfb756ecb9688aa990c250e66797b47d",
+      "url": "https://raw.githubusercontent.com/mozilla-firefox/firefox/48d55cf7ec80093903e2ef7f58b61a84a22ef716/toolkit/components/translations/bergamot-translator/bergamot-translator.js"
+    },
+    "bergamot.wasm": {
+      "input": "official-v4.wasm",
+      "size": 4960506,
+      "sha256": "f38ef807636a7c994afedaab7ff8ffe0d590d21897f05139f747b80fd7bbe926",
+      "zstd_sha256": "327fcfc7b7e9d95f6fa0844ebf899cfc05469872ef02d3aef5783182839a6255",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-wasm-v2/a76f9efe-b185-4a7f-9c3b-5f5d216d12e6.zst"
+    },
+    "jaen-model.bin": {
+      "size": 43977787,
+      "sha256": "3a603e20bfe1be86071913f9e23ab5129075bc0a8490151020ac4821e4f17302",
+      "zstd_sha256": "dadb385632174c77ab57c130c9e3cab1cd1a6874fe85b799a8b0af439fe78c91",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/74c6f502-909a-4683-a5f3-e1283ad086a9.zst"
+    },
+    "jaen-lex.bin": {
+      "size": 9348172,
+      "sha256": "525f412f0d210536c2933c78ae395fa0bf2b5ee6cc5dda61ebc2e79410ebaee4",
+      "zstd_sha256": "571403c44adfa4d545e9e4d537e0e7e56ab6bc3858669db7545c70b0bf39f31e",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/55f9a9f0-891f-448b-85b7-d62488b45b1e.zst"
+    },
+    "jaen-vocab.bin": {
+      "size": 1443222,
+      "sha256": "5cb217758bae05877bb3f0c2f612e4e7c1e4cb03c10db11f4a47098d7ae62919",
+      "zstd_sha256": "f41f32e36f879643a47fedbd0616fa12f416da62e23af8620ee4fc7705217acc",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/9c331ae2-c079-425a-908b-c1a3192dcfaa.zst"
+    },
+    "enru-model.bin": {
+      "size": 31561787,
+      "sha256": "184cb5cda528eeefc0f75f5d0035d787b71d74af135e3c5608d01ae02ecfb920",
+      "zstd_sha256": "a55b2af86653d6e5f4501c674f3806535734f93540e83db19bffdafe456d0887",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/bcb1b4a7-3a6a-4974-86f6-76f39b1adf28.zst"
+    },
+    "enru-lex.bin": {
+      "size": 2774540,
+      "sha256": "4d91839726b960e70b6d05c53d0cffd16262832b1c0e1ea99d66f412dcc6a239",
+      "zstd_sha256": "d7998ec23c850255c2436bab1a248944877f63bf1842e02f67e50807d172b1bf",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/c846c29f-b9e0-465d-b74f-de3e022de8c7.zst"
+    },
+    "enru-vocab.bin": {
+      "size": 904455,
+      "sha256": "56ee63e14e8cb926c394242adc3ed7cc602644c3d33058cff2ce2959d52a6258",
+      "zstd_sha256": "088a38d8b5faf6315b284e3088714f70a8c79438496b15826b6c62496503c447",
+      "url": "https://firefox-settings-attachments.cdn.mozilla.net/main-workspace/translations-models-v2/e88102cf-1664-482e-a1f2-a5e1390e2584.zst"
+    }
+  }
+}

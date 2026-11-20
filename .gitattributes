@@ -1,0 +1,3 @@
+# These are upstream bytes checked against the notices manifest.
+LICENSES/offline-lyrics/*.txt -text -whitespace
+LICENSES/supplements/** -text

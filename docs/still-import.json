@@ -1,0 +1,37 @@
+{
+  "source_project": "Still",
+  "source_version": "2.2.0",
+  "import_date": "2026-10-22",
+  "files_sha256": {
+    "crates/still-core/Cargo.toml": "191aa093e486908543d094878648a2d46b8b373738bdb83dedf6f6f2b8829af7",
+    "crates/still-core/src/ambient.rs": "ad79302e9ee79e79ccb8eda48ec58abb92af9b918072b5072260272bc74e0653",
+    "crates/still-core/src/clock.rs": "a9c9ea31a7772db02770de4a9543e3cc58101db4757e0a389a7afc4e17d8e4f4",
+    "crates/still-core/src/lib.rs": "dab685469ebf6903151ee2ce9633d7c35bc83a3b154761184c9dde7338c5efac",
+    "crates/still-core/src/mailbox.rs": "75984fcef252e60ebe9c915a3a1c0e4fbb4450b9eb5776eab6a4cbeba0a1a43a",
+    "crates/still-core/src/quality.rs": "421094f068d7bcc744b82c7079fc7dd98e6313f6fae2ef88ca7055de35ff14fb",
+    "crates/still-core/src/scene.rs": "88924171e19ffc5b11d82af90d687e0c01074eb8a6519baae23b2c5c4d31490c",
+    "crates/still-core/src/signals.rs": "b606e4fa911a8e550ba82b8dc202126d5b12515e7f2bb2dcc21b6a16f12a7905",
+    "crates/still-renderer/Cargo.toml": "1ba0df3f1a780695aa7e1ea116423d1981542f668f5755e60cdbd64631faba14",
+    "crates/still-renderer/src/compositor.wgsl": "2e9fe64c2d046f035879df78a387aeaf00dd0969b5f21ed246807d67bc46a118",
+    "crates/still-renderer/src/lib.rs": "d2cf169211fa962cc9a6f341ddae209837c4838b9cc0a3d5599ef1bc86a6880f",
+    "crates/still-renderer/src/platform.rs": "d8a593b8843b0f3f606e2376572fc037c9555c1b8c097d47c0862a7e85855758",
+    "crates/still-scenes/Cargo.toml": "defe85dbacc9c40d3f4dcc70672a1e40be16ef50af7aa5985d19af19e0ccc8e5",
+    "crates/still-scenes/src/frost.rs": "4fcc7d6e06a4b3eb654576dd4b423ab013c230118f9b32a8575c08ce9711fb05",
+    "crates/still-scenes/src/frost.wgsl": "054e0cc0e0bc2de0e72c7647dce2e714b0d5117f4695e7ae2236b5ac3f52985f",
+    "crates/still-scenes/src/lib.rs": "55e2280eea211705230d27b482b62d837e766b80f184e246674e26ac634617e6",
+    "crates/still-scenes/src/scene.rs": "957b68b016a2f1852db6920e2c02309307192caea832efa4c2b0842362c40793",
+    "crates/still-scenes/src/targets.rs": "cf268e9b576da70f19ef36d10d03dcf0128afe7ff04e899dcee77cd369187087",
+    "crates/still-ffi/Cargo.toml": "2c4c5f1fd2bd5b04cf1a68695c2184f2bc4576f0e49393f263c5317c5939643d",
+    "crates/still-ffi/src/lib.rs": "435b7f5469fb4076137fa18b52f16e72e3b6f5aa5fc93ac248c3daa47479cb4c",
+    "crates/still-ffi/src/metrics.rs": "7a4d76f3e06c13cb39f3b20c64cc0168685b1842f6fa26a19362b2cc69ec917a",
+    "macOS/EngineController.swift": "60907985aa33e032ff90233840d5e257237bc000f5e382bd2b9196560875e62c",
+    "macOS/MetalHostView.swift": "c117f64abf12d5d9644ba8e3a03c68f2df301cd262a2f625e1de2ad884b9f582",
+    "include/still.h": "0144bd496582a5cf35b7d5de3db2400b02225ffa1defce1a6e8a4f19d50d4019",
+    "LICENSE": "aa9b1b65124b3ce87fabf96bf8ffbb73d723753490fd693aff4c7023a0e4d63a"
+  },
+  "path_in_auvra": {
+    "macOS/EngineController.swift": "platforms/macos/Auvra/Still/EngineController.swift",
+    "macOS/MetalHostView.swift": "platforms/macos/Auvra/Still/MetalHostView.swift",
+    "LICENSE": "LICENSES/Still-MIT.txt"
+  }
+}

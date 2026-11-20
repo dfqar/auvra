@@ -1,0 +1,27 @@
+[package]
+name = "audio-engine"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+
+[dependencies]
+audio-analysis = { path = "../audio-analysis" }
+player-domain = { path = "../player-domain" }
+
+cpal = "=0.18.2"
+symphonia = { version = "=0.6.1", default-features = false, features = ["wav", "pcm", "flac", "aiff", "mp3", "isomp4", "aac", "alac", "ogg", "vorbis", "all-meta"] }
+rtrb = "=0.4.0"
+rubato = { version = "=0.16.2", default-features = false }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "=0.6.2"
+libc = "0.2"
+objc2 = "=0.6.5"
+objc2-av-foundation = { version = "=0.3.2", default-features = false, features = ["std", "AVAudioProcessingSettings", "AVQueuedSampleBufferRendering", "AVSampleBufferAudioRenderer", "AVSampleBufferRenderSynchronizer", "objc2-core-media"] }
+objc2-core-audio = { version = "=0.3.2", default-features = false, features = ["std", "AudioHardware", "objc2", "objc2-foundation", "objc2-core-audio-types", "libc"] }
+objc2-core-audio-types = { version = "=0.3.2", features = ["CoreAudioBaseTypes"] }
+objc2-core-foundation = { version = "=0.3.2", features = ["CFDictionary"] }
+objc2-core-media = { version = "=0.3.2", default-features = false, features = ["std", "CMBase", "CMBlockBuffer", "CMFormatDescription", "CMSampleBuffer", "CMTime", "objc2", "objc2-core-audio-types"] }
+objc2-foundation = { version = "=0.3.2", default-features = false, features = ["std", "NSArray", "NSDictionary", "NSString", "NSUUID", "NSValue", "NSURL", "NSObject", "NSNotification", "NSOperation", "block2"] }
