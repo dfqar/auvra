@@ -1,29 +1,9 @@
-# Notices дистрибутива
+# License notices
 
-`cargo xtask dist` добавляет notices runtime-зависимостей в
-`Auvra.app/Contents/Resources/License Notices/Dependencies`. Генератор читает
-нормальный граф двух FFI для `aarch64-apple-darwin`; dev/build-only и proc-macro
-ветки исключены. Собственный код Auvra покрывает [корневая лицензия MIT](../LICENSE). Импортированные части Still сохраняют [отдельное уведомление](Still-MIT.txt). Обе лицензии входят в приложение.
+Original Auvra code is distributed under MIT by dfqar lab. The imported Frost components retain Still's MIT notice. Both notices are copied to `Contents/Resources/License Notices/` in the app. [Auvra license](../LICENSE) · [Still license](Still-MIT.txt) · [Import record](../docs/still-import.md)
 
-Тексты берутся из опубликованных `.crate`-архивов. SHA-256 каждого архива
-сверяется с `Cargo.lock`. Для Symphonia под MPL-2.0 сохраняются целиком эти же
-исходные архивы с расширением `.tar.gz`, включая manifests и оригинальные
-notices. Notices стандартной библиотеки копируются из выбранного Rust sysroot.
+For a distribution archive, `scripts/cargo.sh xtask dist local` also writes a dependency inventory and notices to the `Dependencies` subdirectory. It follows the normal runtime dependencies of both static FFI libraries for `aarch64-apple-darwin`. The packaging tool reads crates from the Cargo cache and verifies each archived package against its hash in `Cargo.lock`. It includes notices from the selected Rust sysroot and the full corresponding source packages for the MPL-covered Symphonia components.
 
-`runtime-notices.json` хранит проверенные выражения лицензий и дополнения для
-пакетов, в которых авторы опубликовали только декларацию лицензии или ссылку на
-файл вне crate. В `supplements` лежат соответствующие тексты. Реестр фиксирует
-версию пакета, URL, SHA-256 и пояснение происхождения.
+The [registry](runtime-notices.json) records license expressions, upstream locations and checksums for reviewed supplements. Some published crates declare a license in their manifest but omit its text. The [supplements](supplements) directory supplies the corresponding upstream notices for those packages. An unreviewed license, missing notice or mismatched checksum stops archive creation.
 
-Для objc2 сохранено обсуждение лицензии из соответствующего upstream commit.
-Полный MIT notice Steven Sheldon взят из истории проекта до замены
-`LICENSE.txt` на `LICENSE.md`; тот же notice дополняет старые `block` и
-`malloc_buf`, которые декларируют MIT и авторство Steven Sheldon без отдельного
-license file. Для framework crates objc2 приложен полный Apache-2.0, один из
-декларируемых вариантов. Для `hexf-parse` приложен полный CC0-1.0.
-Эти сведения также сохраняются в `packages.json` дистрибутива.
-
-После обновления зависимостей генератор заново проверяет граф и хеши. Новое
-выражение лицензии, отсутствие notice или несовпадение supplement останавливают
-упаковку до публикации ZIP. Дополнения проверяются по указанным первичным
-источникам при изменении пакета.
+To check the packager, run `python3 scripts/test-license-packaging.py`. The optional offline translation pack has its own source references, asset checksums and notices. [Offline translation materials](offline-lyrics/README.md)
